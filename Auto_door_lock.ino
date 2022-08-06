@@ -1,6 +1,6 @@
 /*
   Author: CJ Bester
-  Date Completed: 2020/08/06
+  Date Completed: 2022/08/06
 
   This sketch was created so that I could add a magnetic door lock to my wood working shop.
   I found the original code written by Saddam Khan and then modified it to suite my needs.
