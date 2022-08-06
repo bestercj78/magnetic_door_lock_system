@@ -11,7 +11,7 @@
   LiquidCrystal_I2C
 
 
-  The LiquidCrystal_I2C library can be found here
+  The LiquidCrystal_I2C library can be found here using the following
   link: https://github.com/bestercj78/LiquidCrystal_I2C.git
   
 */
@@ -27,7 +27,7 @@ int openLight   = 4;
 int errorLight  = 5;
 int closeLight  = 6;
 int relayPin    = 7;
-int enroll      = 8;
+int Enroll      = 8;
 int del         = 9;
 int up          = 10;
 int down        = 11;
@@ -39,7 +39,7 @@ Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
 void setup() {
   delay(1000);
-  pinMode(enroll, INPUT_PULLUP);
+  pinMode(Enroll, INPUT_PULLUP);
   pinMode(up, INPUT_PULLUP);
   pinMode(down, INPUT_PULLUP);
   pinMode(del, INPUT_PULLUP);
@@ -52,7 +52,7 @@ void setup() {
 
   lcd.begin(16, 2);
 
-  // very important to set the backligth esle you will not see anything on your screen
+  // very important to set the backlight, or esle you will not see anything on your LCD screen
   lcd.backlight();
   lcd.print("Finger Print");
   lcd.setCursor(0, 1);
@@ -98,7 +98,7 @@ void loop() {
   //Checking if the up or down buttons were pressed
   if (digitalRead(up) == HIGH || digitalRead(down) == HIGH) {
 
-    //Requsting to scan to fingerprint
+    //Requesting to scan your fingerprint.
     for (int i = 0; i < 5; i++) {
       lcd.clear();
       lcd.print("Place Finger");
@@ -107,16 +107,61 @@ void loop() {
       //Fecthing the images
       int result = getFingerprintIDez();
 
-      //Checking if the result for fingerprint collection was successful
+      //Checking if the result for the fingerprint collection was successful
       if (result >= 0) {
         //Difine input user
         int inputUser = 0;
 
-        //Fetching exact fingerprint and calling the open door funtion
+        //Fetching the exact fingerprint and calling the open door function
         switch (finger.fingerID) {
 
           case 1:
             inputUser = 1;
+            openDoor(inputUser);
+            break;
+
+          case 2:
+            inputUser = 2;
+            openDoor(inputUser);
+            break;
+
+          case 3:
+            inputUser = 3;
+            openDoor(inputUser);
+            break;
+
+          case 4:
+            inputUser = 4;
+            openDoor(inputUser);
+            break;
+
+          case 5:
+            inputUser = 5;
+            openDoor(inputUser);
+            break;
+
+          case 6:
+            inputUser = 6;
+            openDoor(inputUser);
+            break;
+
+          case 7:
+            inputUser = 7;
+            openDoor(inputUser);
+            break;
+
+          case 8:
+            inputUser = 8;
+            openDoor(inputUser);
+            break;
+
+          case 9:
+            inputUser = 9;
+            openDoor(inputUser);
+            break;
+
+          case 10:
+            inputUser = 10;
             openDoor(inputUser);
             break;
         }
@@ -138,7 +183,7 @@ void loop() {
     delay(3000);
   }
 
-  //Checking if the Enroll or Delete buttons were pushed
+  //Checking if the Enroll or Delete buttons were pushed.
   checkKeys();
   delay(1000);
 }
@@ -153,6 +198,42 @@ int openDoor(int inputUser) {
 
     case 1:
       user = "CJ";
+      break;
+
+    case 2:
+      user = "CJ";
+      break;
+
+    case 3:
+      user = "Chris";
+      break;
+
+    case 4:
+      user = "Chris";
+      break;
+
+    case 5:
+      user = "Niecy";
+      break;
+
+    case 6:
+      user = "Niecy";
+      break;
+
+    case 7:
+      user = "Kyle";
+      break;
+
+    case 8:
+      user = "Kyle";
+      break;
+
+    case 9:
+      user = "Ciara";
+      break;
+
+    case 10:
+      user = "Ciara";
       break;
   }
 
@@ -176,10 +257,10 @@ int openDoor(int inputUser) {
 }
 
 void checkKeys() {
-  //Checking if the enroll or delete button was pressed
-  if (digitalRead(enroll) == HIGH) {
+  //Checking if the Enroll or delete button was pressed
+  if (digitalRead(Enroll) == HIGH) {
 
-    //Security measure put in place so that only an authorized user can add a new fingerprint
+    //Security measure put in place so that only an authorized user can add a New fingerprint
     for (int i = 0; i < 5; i++) {
       lcd.clear();
       lcd.print("Place Finger");
@@ -193,15 +274,15 @@ void checkKeys() {
             lcd.clear();
             lcd.print("Please Wait");
             delay(1000);
-            while (digitalRead(enroll) == HIGH);
-            Enroll();
+            while (digitalRead(Enroll) == HIGH);
+            EnrollFingerprint();
             break;
           case 2:
             lcd.clear();
             lcd.print("Please Wait");
             delay(1000);
-            while (digitalRead(enroll) == HIGH);
-            Enroll();
+            while (digitalRead(Enroll) == HIGH);
+            EnrollFingerprint();
             break;
           default:
             Serial.println("Action Not Allowed");
@@ -232,13 +313,13 @@ void checkKeys() {
             lcd.clear();
             lcd.print("Please Wait");
             delay(1000);
-            delet();
+            deleteFingerprint();
             break;
           case 2:
             lcd.clear();
             lcd.print("Please Wait");
             delay(1000);
-            delet();
+            deleteFingerprint();
             break;
           default:
             Serial.println("Action Not Allowed");
@@ -251,8 +332,8 @@ void checkKeys() {
   }
 }
 
-//Fingerprint enrollment
-void Enroll() {
+//Fingerprint Enrollment
+void EnrollFingerprint() {
   int count = 0;
   lcd.clear();
   lcd.print("Enroll Finger    ");
@@ -277,14 +358,14 @@ void Enroll() {
       id = count;
       getFingerprintEnroll();
       return;
-    } else if (digitalRead(enroll) == HIGH) {
+    } else if (digitalRead(Enroll) == HIGH) {
       return;
     }
   }
 }
 
 //Fingerprint delete
-void delet() {
+void deleteFingerprint() {
   int count = 0;
   lcd.clear();
   lcd.print("Delete Finger    ");
@@ -308,7 +389,7 @@ void delet() {
       id = count;
       deleteFingerprint(id);
       return;
-    } else if (digitalRead(enroll) == HIGH) {
+    } else if (digitalRead(Enroll) == HIGH) {
       return;
     }
   }
