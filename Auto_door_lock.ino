@@ -119,51 +119,6 @@ void loop() {
             inputUser = 1;
             openDoor(inputUser);
             break;
-
-          case 2:
-            inputUser = 2;
-            openDoor(inputUser);
-            break;
-
-          case 3:
-            inputUser = 3;
-            openDoor(inputUser);
-            break;
-
-          case 4:
-            inputUser = 4;
-            openDoor(inputUser);
-            break;
-
-          case 5:
-            inputUser = 5;
-            openDoor(inputUser);
-            break;
-
-          case 6:
-            inputUser = 6;
-            openDoor(inputUser);
-            break;
-
-          case 7:
-            inputUser = 7;
-            openDoor(inputUser);
-            break;
-
-          case 8:
-            inputUser = 8;
-            openDoor(inputUser);
-            break;
-
-          case 9:
-            inputUser = 9;
-            openDoor(inputUser);
-            break;
-
-          case 10:
-            inputUser = 10;
-            openDoor(inputUser);
-            break;
         }
       }
     }
@@ -199,42 +154,6 @@ int openDoor(int inputUser) {
     case 1:
       user = "CJ";
       break;
-
-    case 2:
-      user = "CJ";
-      break;
-
-    case 3:
-      user = "Chris";
-      break;
-
-    case 4:
-      user = "Chris";
-      break;
-
-    case 5:
-      user = "Niecy";
-      break;
-
-    case 6:
-      user = "Niecy";
-      break;
-
-    case 7:
-      user = "Kyle";
-      break;
-
-    case 8:
-      user = "Kyle";
-      break;
-
-    case 9:
-      user = "Ciara";
-      break;
-
-    case 10:
-      user = "Ciara";
-      break;
   }
 
   //Opening the door
@@ -257,10 +176,10 @@ int openDoor(int inputUser) {
 }
 
 void checkKeys() {
-  //Checking if the Enroll or delete button was pressed
+  //Checking if the enroll or delete button was pressed
   if (digitalRead(Enroll) == HIGH) {
 
-    //Security measure put in place so that only an authorized user can add a New fingerprint
+    //Security measure put in place so that only an authorized user can add a new fingerprint
     for (int i = 0; i < 5; i++) {
       lcd.clear();
       lcd.print("Place Finger");
@@ -364,7 +283,7 @@ void EnrollFingerprint() {
   }
 }
 
-//Fingerprint delete
+//Fingerprint Delete
 void deleteFingerprint() {
   int count = 0;
   lcd.clear();
@@ -395,7 +314,7 @@ void deleteFingerprint() {
   }
 }
 
-//Enroll fingerprint
+//Enroll Fingerprint
 uint8_t getFingerprintEnroll() {
   int p = -1;
   lcd.clear();
