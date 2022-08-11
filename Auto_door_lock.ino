@@ -244,7 +244,11 @@ void checkKeys() {
             Serial.println("Action Not Allowed");
             lcd.clear();
             lcd.print("Unauthorised");
-            break;
+            digitalWrite(closeLight, LOW);
+            digitalWrite(errorLight, HIGH);
+            delay(5000);
+            digitalWrite(errorLight, LOW);
+            return;
         }
       }
     }
